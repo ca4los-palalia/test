@@ -1,0 +1,40 @@
+<zk>
+	<window apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm')@init('com.cpl.mannager.app.vm.IndexVM')"
+		validationMessages="@id('vmsgs')">
+		<hlayout>
+			count:
+			<label value="@load(vm.count)" />
+		</hlayout>
+		<button label="add" onClick="@command('cmd')" />
+
+		<window>
+			<listbox vflex="1"
+				emptyMessage="No se encontraron familias para productos"
+				width="100%" model="@bind(vm.archivosDrive)">
+
+				<listhead>
+					<listheader label="Nombre" sort="auto(file.title)"/>
+					<listheader label="Extension" sort="auto(extension)"/>
+					<listheader label="Tamaño" />
+				</listhead>
+				<template name="model" var="tipo">
+					<listitem>
+						<listcell>
+							<label value="@bind(tipo.file.title)"
+								width="100%" />
+						</listcell>
+						<listcell>
+							<label value="@bind(tipo.extension)"
+								width="100%" />
+						</listcell>
+						<listcell>
+							<label value="@bind(tipo.tamanio)"
+								width="100%" />
+						</listcell>
+					</listitem>
+				</template>
+			</listbox>
+		</window>
+	</window>
+</zk>
